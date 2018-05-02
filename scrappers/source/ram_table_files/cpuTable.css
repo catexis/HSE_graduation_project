@@ -1,0 +1,42 @@
+/* tables */
+table.cpulist {
+	border: 1px solid #CCCCCC;
+	/* margin:10px 0pt 15px; */
+	width: 90%;
+	text-align: left;
+	/* border-spacing: 0; */
+	border-collapse: collapse;
+}
+table.cpulist thead tr th, table.cpulist tfoot tr th, .repeated-header {
+	background-color: #CCCCCC;
+	border: 1px solid #CCCCCC;
+	/* font-size: 8pt; */
+	/* padding: 4px; */
+}
+table.cpulist thead tr .header {
+	background-image: url(./images/ascdescbg.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+table.cpulist tbody td {
+	/* color: #3D3D3D; */
+	/* padding: 4px; */
+	border: 1px solid #CCCCCC;
+	background-color: #FFF;
+	vertical-align: top;
+}
+/*
+table.cpulist tbody tr.odd td {
+	background-color:#F0F0F6;
+}
+*/
+table.cpulist thead tr .headerSortUp {
+	background-image: url(./images/asc.gif);
+}
+table.cpulist thead tr .headerSortDown {
+	background-image: url(./images/desc.gif);
+}
+table.cpulist thead tr .headerSortDown, table.cpulist thead tr .headerSortUp {
+background-color: #A2C1C6;
+}

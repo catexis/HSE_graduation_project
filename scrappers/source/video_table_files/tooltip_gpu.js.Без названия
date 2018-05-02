@@ -1,0 +1,66 @@
+var mouse_event_timer;
+
+/* STAD - "Show Tip After Delay */
+function STAD( event, rank, rating2d, samples, extra, extra2 ) {
+	var xpos = event.clientX;
+	var ypos = event.clientY;
+	clearTimeout( mouse_event_timer );
+	mouse_event_timer = setTimeout( function() { show_tip( xpos, ypos, rank, rating2d, samples, extra, extra2 ); }, 150 );
+}
+
+function value_STAD( event, rank, rating, samples, extra )
+{
+	var xpos = event.clientX;
+	var ypos = event.clientY;
+	clearTimeout( mouse_event_timer );
+	mouse_event_timer = setTimeout( function() { value_show_tip( xpos, ypos, rank, rating, samples, extra ); }, 150 );
+}
+
+/* HTAD - "Hide Tip After Delay */
+function HTAD( ) {
+	clearTimeout( mouse_event_timer );
+	mouse_event_timer = setTimeout( function() { hide_tip(); }, 150 );
+}
+
+function show_tip( xpos, ypos, rank, rating2d, samples, extra, extra2 ) {
+
+	var tooltip = document.getElementById('tip');
+	tooltip.style.left = (xpos+3) + 'px';
+	tooltip.style.top = (ypos+3) + 'px';
+	
+	tooltip.innerHTML = "Rank: " + rank + "<br>";
+	
+	if( extra )
+		tooltip.innerHTML += "G3DMark: " + extra + "<br>";	
+	
+	if( extra2 )
+		tooltip.innerHTML += "Max TDP:" + extra2 + " W<br>";
+	else
+		tooltip.innerHTML += "G2DMark: " + rating2d + "<br>";
+		
+	tooltip.innerHTML += "Number of Samples: " + samples + "<br>";
+	
+	tooltip.style.visibility='visible';
+}
+
+function value_show_tip( xpos, ypos, rank, rating, samples, extra )
+{
+	var tooltip = document.getElementById('tip');
+	tooltip.style.left = (xpos+3) + 'px';
+	tooltip.style.top = (ypos+3) + 'px';
+	
+	tooltip.innerHTML = "Rank: " + rank + "<br>";
+	
+	if( extra )
+		tooltip.innerHTML += "DirectCompute: " + extra + " OPs/Sec<BR>";
+	
+	tooltip.innerHTML += "G3DMark: " + rating + "<BR>";
+	tooltip.innerHTML += "Number of Samples: " + samples + "<br>";			
+	
+	tooltip.style.visibility='visible';
+}	
+
+function hide_tip( ) {
+	var tooltip = document.getElementById('tip');
+	tooltip.style.visibility='hidden';
+}
