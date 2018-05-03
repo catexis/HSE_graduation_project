@@ -1,0 +1,35 @@
+{% extends "vergleich/base.html" %}
+{% load staticfiles %}
+{% load django_tables2 %}
+
+{% block page-title %}Сводная таблица{% endblock %}
+
+{% block content %}
+
+<div class="col-md-10">
+    <div class="feed-box text-center">
+        <section class="card">
+            <div class="card-body">
+                <h2>{{ page_name }}</h2>
+                <p>
+                    {% render_table table %}
+                </p>
+            </div>
+        </section>
+    </div>
+</div>
+
+<div class="col-md-2">
+    <div class="card">
+        <div class="card-header">
+            <strong class="card-title">Фильтр</strong>
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                Здесь мог бы быть Ваш фильр =)
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

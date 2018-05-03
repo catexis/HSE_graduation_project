@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'vergleich.apps.VergleichConfig'
+    'vergleich.apps.VergleichConfig',
+    
+    # Tables
+    'django_tables2'
 ]
 
 MIDDLEWARE = [
