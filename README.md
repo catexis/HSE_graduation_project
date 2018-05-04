@@ -31,6 +31,9 @@
 Так же в ходе проекта будет необходимость в использовании парсеров интернет ресурсов.
 
 ## История
+### 2018-05-04
+*  Добавлена возможность просмотра таблицы с оперативной памятью
+*  Во всех таблицах добавлен функционал перехода на страницу с результатами теста по щелчку на имени изделия
 ### 2018-05-03
 *  Добавлена возможность просмотра таблицы с центральными процессорами
 *  Добавлена возможность просмотра таблицы с жёсткими дисками
@@ -56,6 +59,7 @@
 ![Main page](screenshots/001.png)  
 ![CPU table](screenshots/002.png)  
 ![VGA table](screenshots/003.png)  
+![RAM table with links](screenshots/004.png)  
 
 ## Полезные ссылки
 [Django](https://www.djangoproject.com/) - отличный каркас для разработки серверной части веб-приложений
@@ -68,5 +72,5 @@
 [Django Tips for Working with Databases](https://medium.com/@hakibenita/9-django-tips-for-working-with-databases-beba787ed7d3) - 
 советы по использованию ORM в Django  
 [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) - используется в
-связи с оформлением данной страницы
+связи с оформлением данной страницы  
 [Sufee HTML5 Admin Dashboard Template](https://github.com/puikinsh/sufee-admin-dashboard) - веб-основа (HTML \ CSS \ JS)
