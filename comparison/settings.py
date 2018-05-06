@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'vergleich.apps.VergleichConfig',
     
     # Tables
-    'django_tables2'
+    'django_tables2',
+
+    # Filters
+    'django_filters',
 ]
 
 MIDDLEWARE = [

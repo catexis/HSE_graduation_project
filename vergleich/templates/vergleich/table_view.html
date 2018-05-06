@@ -26,7 +26,10 @@
         </div>
         <div class="card-body">
             <p class="card-text">
-                Здесь мог бы быть Ваш фильр =)
+                <form action="" method="get">
+                    {{ filter.form.as_p }}
+                    <input type="submit" />
+                </form>
             </p>
         </div>
     </div>

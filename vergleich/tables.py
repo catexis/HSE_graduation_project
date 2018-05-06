@@ -12,6 +12,14 @@ class ColumnBool(tables.Column):
             return format_html('<i class="menu-icon fa fa-square-o">')
 
 
+class ColumnNoPrice(tables.Column):
+    def render(self, value):
+        if value == -1:
+            return format_html('<i class="menu-icon fa fa-minus">')
+        else:
+            return value
+
+
 class ColumnLink(tables.Column):
     def render(self, value, record):
         return format_html('<a href="{}" target="_blank">{}</a>', record.url, value)
@@ -22,7 +30,7 @@ class CPUTable(tables.Table):
     score = tables.Column(verbose_name="Очки")
     rank = tables.Column(verbose_name="Позиция")
     in_stock = ColumnBool(verbose_name="В наличии")
-    price = tables.Column(verbose_name="Цена")
+    price = ColumnNoPrice(verbose_name="Цена")
 
     class Meta:
         model = ScrapperBenchCPU
@@ -35,7 +43,7 @@ class HDDTable(tables.Table):
     score = tables.Column(verbose_name="Очки")
     rank = tables.Column(verbose_name="Позиция")
     in_stock = ColumnBool(verbose_name="В наличии")
-    price = tables.Column(verbose_name="Цена")
+    price = ColumnNoPrice(verbose_name="Цена")
 
     class Meta:
         model = ScrapperBenchHDD
@@ -48,7 +56,7 @@ class VGATable(tables.Table):
     score = tables.Column(verbose_name="Очки")
     rank = tables.Column(verbose_name="Позиция")
     in_stock = ColumnBool(verbose_name="В наличии")
-    price = tables.Column(verbose_name="Цена")
+    price = ColumnNoPrice(verbose_name="Цена")
 
     class Meta:
         model = ScrapperBenchVideo
@@ -62,7 +70,7 @@ class RAMTable(tables.Table):
     speed_write = tables.Column(verbose_name="Скорость записи")
     latency = tables.Column(verbose_name="Задержка")
     in_stock = ColumnBool(verbose_name="В наличии")
-    price = tables.Column(verbose_name="Цена")
+    price = ColumnNoPrice(verbose_name="Цена")
 
     class Meta:
         model = ScrapperBenchVideo
