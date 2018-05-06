@@ -1,13 +1,16 @@
 from . import models
 from . import filters
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DeleteView, UpdateView
 from django.views.generic import FormView
 from django.core.paginator import Paginator
 from django_tables2 import MultiTableMixin, RequestConfig, SingleTableMixin, SingleTableView
 from django_tables2.views import SingleTableMixin
 from django_filters.views import FilterView
+from django.contrib import messages
+from django.urls import reverse_lazy
 from .tables import CPUTable, HDDTable, VGATable, RAMTable
+from . import forms
 
 
 class IndexPage(TemplateView):
@@ -79,4 +82,51 @@ class TableRAM(SingleTableMixin, FilterView):
 
 
 class ConfCreateView(FormView):
-    pass
+    template_name = "vergleich/create_view.html"
+    form_class = forms.ConfCreateForm
+    success_url = "."
+    req = {}
+    type_of_view = 'FormView'
+
+    def form_valid(self, form):
+        self.req["form"] = form
+        new_obj = models.ComputerConf(
+            cpu = form.cleaned_data['cpu'],
+            ram = form.cleaned_data['ram'],
+            hdd = form.cleaned_data['hdd'],
+            vga = form.cleaned_data['vga']
+        )
+        new_obj.save()
+        print(form)
+        return super().form_valid(form)
+
+
+    def get_context_data(self, **kwargs):
+        ret = super(ConfCreateView, self).get_context_data(**kwargs)
+        if self.req.get("form", None) != None:
+            ret["form"] = self.req["form"]
+            self.req["form"] = None
+        return ret
+
+
+class ConfCmprView(TemplateView):
+    template_name = "vergleich/compare_view.html"
+
+    def get_context_data(self, **kwargs):
+        ret = super(ConfCmprView, self).get_context_data(**kwargs)
+        ret['table_obj'] = models.ComputerConf.objects.all()
+        ret['conf_count'] = range(0, models.ComputerConf.objects.all().count(), 1)
+        return ret
+
+
+class ConfUpdate(UpdateView):
+    model = models.ComputerConf
+    template_name = "vergleich/create_view.html"
+    fields = ['cpu', 'ram', 'vga', 'hdd']
+    success_url = reverse_lazy('conf_cmpr')
+    type_of_view = 'UpdateView'
+
+
+class ConfDelete(DeleteView):
+    model = models.ComputerConf
+    success_url = reverse_lazy('conf_cmpr')

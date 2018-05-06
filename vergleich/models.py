@@ -28,7 +28,7 @@ class ScrapperBenchCPU(models.Model):
         return self.name
 
 
-# CPU table
+# HDD table
 class ScrapperBenchHDD(models.Model):
     name = models.CharField(max_length=1000, blank=True)
     url = models.URLField(max_length=1000, blank=True)
@@ -52,3 +52,19 @@ class ScrapperBenchVideo(models.Model):
 
     def __str__(self):
         return self.name
+
+from django.core.exceptions import ValidationError
+from django.utils.html import format_html
+class ComputerConf(models.Model):
+    cpu = models.ForeignKey('ScrapperBenchCPU', on_delete=models.CASCADE, blank = False, null = False, verbose_name = "Цетральный процессор")
+    ram = models.ForeignKey('ScrapperBenchRam', on_delete=models.CASCADE, blank = False, null = False, verbose_name = "Оперативная память")
+    hdd = models.ForeignKey('ScrapperBenchHDD', on_delete=models.CASCADE, blank = False, null = False, verbose_name = "Жёсткий диск")
+    vga = models.ForeignKey('ScrapperBenchVideo', on_delete=models.CASCADE, blank = False, null = False, verbose_name = "Видеоускоритель")
+
+    def __str__(self):
+        return "{0}; {1}; {2}; {3}".format(self.cpu, self.ram, self.hdd, self.vga)
+
+    def clean(self):
+        if ComputerConf.objects.all().count() > 6:
+            # raise ValidationError('Too many records in model')
+            raise ValidationError(format_html('<div class="alert alert-warning alert-dismissible fade show" role="alert">Вы можете добавлять не более 7 конфигураций.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>'))

@@ -1,0 +1,94 @@
+{% extends "vergleich/base.html" %}
+{% load staticfiles %}
+
+{% block page-title %}Сравнение конфигураций{% endblock %}
+
+{% block content %}
+
+<div class="col-md-12">
+    <div class="feed-box text-center">
+        <section class="card">
+            <div class="card-body">
+                <table class="table">
+                    <tr>
+                        <th></th>
+                        {% for i in conf_count %}
+                            <th>Конф. {{ forloop.counter }}</th>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td>Модель процессора</td>
+                        {% for data in table_obj %}
+                            <td>{{ data.cpu.name }} <a href="{{ data.cpu.url }}" target="_blank"><i class="menu-icon fa fa-link"></i></a></td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td>Счёт</td>
+                        {% for data in table_obj %}
+                            <td>{{ data.cpu.score }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td>Модель оперативной памяти</td>
+                        {% for data in table_obj %}
+                            <td>{{ data.ram.name }} <a href="{{ data.ram.url }}" target="_blank"><i class="menu-icon fa fa-link"></i></a></td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td>Скорость чтения</td>
+                        {% for data in table_obj %}
+                            <td>{{ data.ram.speed_read }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td>Скорость записи</td>
+                        {% for data in table_obj %}
+                            <td>{{ data.ram.speed_write }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td>Задержка</td>
+                        {% for data in table_obj %}
+                            <td>{{ data.ram.latency }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td>Модель видеоускорителя</td>
+                        {% for data in table_obj %}
+                        <td>{{ data.vga.name }} <a href="{{ data.vga.url }}" target="_blank"><i class="menu-icon fa fa-link"></i></a></td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td>Счёт</td>
+                        {% for data in table_obj %}
+                        <td>{{ data.vga.score }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td>Модель жёсткого диска</td>
+                        {% for data in table_obj %}
+                            <td>{{ data.hdd.name }} <a href="{{ data.hdd.url }}" target="_blank"><i class="menu-icon fa fa-link"></i></a></td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td>Счёт</td>
+                        {% for data in table_obj %}
+                            <td>{{ data.hdd.score }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td></td>
+                        {% for data in table_obj %}
+                            <td>
+                                <a href="{{ data.pk }}/update/"><i class="fa fa-pencil"></i></a>
+                                <a href="{{ data.pk }}/delete/"><i class="fa fa-times-circle"></i></a>
+                            </td>
+                        {% endfor %}
+                    </tr>
+                </table>
+            </div>
+        </section>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "vergleich/base.html" %}
+{% load staticfiles %}
+
+{% block page-title %}Удаление записи{% endblock %}
+
+{% block content %}
+
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <strong class="card-title">Подтвердите удаление</strong>
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                <p>Вы действительно хотите удалить конфигурацию?</p>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" action="" value="Да, удалить!" />
+                </form>
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
