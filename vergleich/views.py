@@ -9,16 +9,19 @@ from django_tables2.views import SingleTableMixin
 from django_filters.views import FilterView
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .tables import CPUTable, HDDTable, VGATable, RAMTable
 from . import forms
 
 
-class IndexPage(TemplateView):
+class IndexPage(LoginRequiredMixin, TemplateView):
     template_name = "vergleich/index.html"
     flag_main = 'class=active'
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'
 
 
-class TableCpu(SingleTableMixin, FilterView):
+class TableCpu(LoginRequiredMixin, SingleTableMixin, FilterView):
     template_name = "vergleich/table_view.html"
     flag_table_cpu = 'class=active'
     model = models.ScrapperBenchCPU
@@ -26,6 +29,8 @@ class TableCpu(SingleTableMixin, FilterView):
     table_class = CPUTable
     paginate_by = 10
     filterset_class = filters.TableCPUFilter
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'
 
     def get_context_data(self, **kwargs):
         context = super(TableCpu, self).get_context_data(**kwargs)
@@ -34,13 +39,15 @@ class TableCpu(SingleTableMixin, FilterView):
         return context
 
 
-class TableHDD(SingleTableMixin, FilterView):
+class TableHDD(LoginRequiredMixin, SingleTableMixin, FilterView):
     template_name = "vergleich/table_view.html"
     flag_table_hdd = 'class=active'
     queryset = models.ScrapperBenchHDD.objects.all().order_by('-in_stock', '-score')
     table_class = HDDTable
     paginate_by = 10
     filterset_class = filters.TableHDDFilter
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'
 
     def get_context_data(self, **kwargs):
         context = super(TableHDD, self).get_context_data(**kwargs)
@@ -49,7 +56,7 @@ class TableHDD(SingleTableMixin, FilterView):
         return context
 
 
-class TableVGA(SingleTableMixin, FilterView):
+class TableVGA(LoginRequiredMixin, SingleTableMixin, FilterView):
     template_name = "vergleich/table_view.html"
     flag_table_vga = 'class=active'
     model = models.ScrapperBenchVideo
@@ -57,6 +64,8 @@ class TableVGA(SingleTableMixin, FilterView):
     table_class = VGATable
     paginate_by = 10
     filterset_class = filters.TableVGAFilter
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'
 
     def get_context_data(self, **kwargs):
         context = super(TableVGA, self).get_context_data(**kwargs)
@@ -65,7 +74,7 @@ class TableVGA(SingleTableMixin, FilterView):
         return context
 
 
-class TableRAM(SingleTableMixin, FilterView):
+class TableRAM(LoginRequiredMixin, SingleTableMixin, FilterView):
     template_name = "vergleich/table_view.html"
     flag_table_ram = 'class=active'
     model = models.ScrapperBenchRam
@@ -73,6 +82,8 @@ class TableRAM(SingleTableMixin, FilterView):
     table_class = RAMTable
     paginate_by = 10
     filterset_class = filters.TableRamFilter
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'
 
     def get_context_data(self, **kwargs):
         context = super(TableRAM, self).get_context_data(**kwargs)
@@ -81,12 +92,14 @@ class TableRAM(SingleTableMixin, FilterView):
         return context
 
 
-class ConfCreateView(FormView):
+class ConfCreateView(LoginRequiredMixin, FormView):
     template_name = "vergleich/create_view.html"
     form_class = forms.ConfCreateForm
     success_url = "."
     req = {}
     type_of_view = 'FormView'
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'
 
     def form_valid(self, form):
         self.req["form"] = form
@@ -109,8 +122,10 @@ class ConfCreateView(FormView):
         return ret
 
 
-class ConfCmprView(TemplateView):
+class ConfCmprView(LoginRequiredMixin, TemplateView):
     template_name = "vergleich/compare_view.html"
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'
 
     def get_context_data(self, **kwargs):
         ret = super(ConfCmprView, self).get_context_data(**kwargs)
@@ -119,14 +134,18 @@ class ConfCmprView(TemplateView):
         return ret
 
 
-class ConfUpdate(UpdateView):
+class ConfUpdate(LoginRequiredMixin, UpdateView):
     model = models.ComputerConf
     template_name = "vergleich/create_view.html"
     fields = ['cpu', 'ram', 'vga', 'hdd']
     success_url = reverse_lazy('conf_cmpr')
     type_of_view = 'UpdateView'
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'
 
 
-class ConfDelete(DeleteView):
+class ConfDelete(LoginRequiredMixin, DeleteView):
     model = models.ComputerConf
     success_url = reverse_lazy('conf_cmpr')
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'

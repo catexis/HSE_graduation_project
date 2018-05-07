@@ -4,13 +4,22 @@
 
 {% block page-css %}
 <link rel="stylesheet" href="{% static 'assets/css/vergleich_style.css' %}">
+
+<style>
+    div.col-md-9{
+        display: none;
+    }
+</style>
+
 {% endblock %}
+
 
 {% block page-title %}Создание конфигурации{% endblock %}
 
+
 {% block content %}
 
-<div class="col-md-12">
+<div class="col-md-9">
     <div class="card">
         <div class="card-header">
             <strong class="card-title">
@@ -42,5 +51,21 @@
         </form>
     </div>
 </div>
+
+{% endblock %}
+
+{% block js %}
+
+    <script>
+        jQuery(document).ready(function($) {
+            $("#id_cpu").addClass("form-control-sm form-control")
+            $("#id_ram").addClass("form-control-sm form-control")
+            $("#id_hdd").addClass("form-control-sm form-control")
+            $("#id_vga").addClass("form-control-sm form-control")
+            $("table").addClass("table")
+            $(".col-md-9").css("display", "initial")
+            // $("tr > th").addClass("col-lg-6");
+        });
+    </script>
 
 {% endblock %}

@@ -2,6 +2,14 @@
 {% load staticfiles %}
 {% load django_tables2 %}
 
+{% block page-css %}
+<style>
+    div.col-md-3{
+        display: none;
+    }
+</style>
+{% endblock %}
+
 {% block page-title %}Сводная таблица{% endblock %}
 
 {% block content %}
@@ -28,11 +36,40 @@
             <p class="card-text">
                 <form action="" method="get">
                     {{ filter.form.as_p }}
-                    <input type="submit" />
+                    <input type="submit" class="btn btn-outline-success btn-sm"></input>
                 </form>
             </p>
         </div>
     </div>
 </div>
+
+{% endblock %}
+
+
+{% block js %}
+
+    <script>
+        jQuery(document).ready(function($) {
+            $("#id_name__contains").addClass("form-control");
+            $("#id_name__contains").prev().text("Имя содержит");
+            $("#id_score__contains").addClass("form-control");
+            $("#id_score__contains").prev().text("Счёт содержит");
+            $("#id_rank").addClass("form-control");
+            $("#id_rank").prev().text("Позиция");
+            $("#id_price__contains").addClass("form-control");
+            $("#id_price__contains").prev().text("Цена содержит");
+            $("#id_in_stock").addClass("form-control");
+            $("#id_in_stock").prev().text("Наличие");
+
+            $("#id_speed_read__contains").addClass("form-control");
+            $("#id_speed_read__contains").prev().text("Скорость чтения содержит");
+            $("#id_speed_write__contains").addClass("form-control");
+            $("#id_speed_write__contains").prev().text("Скорость записи содержит");
+            $("#id_latency__contains").addClass("form-control");
+            $("#id_latency__contains").prev().text("Задержка содержит");
+
+            $(".col-md-3").css("display", "initial");
+        });
+    </script>
 
 {% endblock %}

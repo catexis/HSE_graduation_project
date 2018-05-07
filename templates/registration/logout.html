@@ -39,20 +39,7 @@
                     <h2 style="color: #f1f2f7;">Vergleich</h2>
                 </div>
                 <div class="login-form">
-                    <form method="post" action="{% url 'login' %}">
-                    {% csrf_token %}
-                        <div class="form-group">
-                            <label>Имя пользователя</label><br>
-                            <!-- <input type="email" class="form-control" placeholder="Email"> -->
-                            {{ form.username }}
-                        </div>
-                        <div class="form-group">
-                            <label>Пароль</label><br>
-                            <!-- <input type="password" class="form-control" placeholder="Password"> -->
-                            {{ form.password }}
-                        </div>
-                        <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Войти</button>
-                    </form>
+                    Вы по кинули сайт! <a href="{% url 'login'%}">Вернуться?</a>
                 </div>
             </div>
         </div>
@@ -60,19 +47,9 @@
 
 
     <script src="{% static 'assets/js/vendor/jquery-2.1.4.min.js' %}"></script>
-    <!-- <script src="{% static 'assets/js/vendor/jquery-3.3.1.min.js' %}"></script> -->
     <script src="{% static 'assets/js/popper.min.js' %}"></script>
     <script src="{% static 'assets/js/plugins.js' %}"></script>
     <script src="{% static 'assets/js/main.js' %}"></script>
-
-    <script>
-        jQuery(document).ready(function($) {
-            //использование jQuery как $
-            $("input").addClass("form-control");
-            $("#id_username").attr("placeholder", "Имя пользователя");
-            $("#id_password").attr("placeholder", "Пароль");
-        });
-    </script>
 
 
 </body>

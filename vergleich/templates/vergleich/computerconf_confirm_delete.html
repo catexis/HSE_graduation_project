@@ -5,20 +5,32 @@
 
 {% block content %}
 
-<div class="col-md-6">
+<div class="col-md-4">
     <div class="card">
         <div class="card-header">
             <strong class="card-title">Подтвердите удаление</strong>
         </div>
-        <div class="card-body">
-            <p class="card-text">
-                <p>Вы действительно хотите удалить конфигурацию?</p>
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    <input type="submit" action="" value="Да, удалить!" />
-                </form>
-            </p>
-        </div>
+        <form action="" method="POST">
+            <div class="card-body">
+                <p class="card-text">
+                    <p>Вы действительно хотите удалить конфигурацию?</p>
+                </p>
+            </div>
+            <div class="card-footer">
+                {% csrf_token %}
+                <table style="width: 100%;">
+                    <tr>
+                        <td style="width: 47%;">
+                            <input type="submit" action="" value="Да, удалить!" class="btn btn-outline-danger btn-lg btn-block"/>
+                        </td>
+                        <td style="width: 6%;"></td>
+                        <td style="width: 47%;">
+                            <a href="{% url 'conf_cmpr' %}"><button type="button" class="btn btn-outline-secondary btn-lg btn-block">Нет</button></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
     </div>
 </div>
 
