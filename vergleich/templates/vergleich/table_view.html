@@ -33,12 +33,12 @@
             <strong class="card-title">Фильтр</strong>
         </div>
         <div class="card-body">
-            <p class="card-text">
+            <!-- <p class="card-text"> -->
                 <form action="" method="get">
                     {{ filter.form.as_p }}
                     <input type="submit" class="btn btn-outline-success btn-sm"></input>
                 </form>
-            </p>
+            <!-- </p> -->
         </div>
     </div>
 </div>
@@ -50,23 +50,42 @@
 
     <script>
         jQuery(document).ready(function($) {
-            $("#id_name__contains").addClass("form-control");
-            $("#id_name__contains").prev().text("Имя содержит");
-            $("#id_score__contains").addClass("form-control");
-            $("#id_score__contains").prev().text("Счёт содержит");
-            $("#id_rank").addClass("form-control");
-            $("#id_rank").prev().text("Позиция");
-            $("#id_price__contains").addClass("form-control");
-            $("#id_price__contains").prev().text("Цена содержит");
+            $("#id_name").addClass("form-control col-sm-12");
+            $("#id_name").prev().text("Имя содержит");
+
+            {% if view.ram_table == "True" %}
+                $("#id_speed_read_0").addClass("form-control");
+                $("#id_speed_read_1").addClass("form-control");
+                $("#id_speed_read_0").prev().text("Скорость чтения между");
+                $("#id_speed_read_0").attr("placeholder", "Начиная с ...");
+                $("#id_speed_read_1").attr("placeholder", "... до");
+                $("#id_speed_write_0").addClass("form-control");
+                $("#id_speed_write_1").addClass("form-control");
+                $("#id_speed_write_0").prev().text("Скорость записи между");
+                $("#id_speed_write_0").attr("placeholder", "Начиная с ...");
+                $("#id_speed_write_1").attr("placeholder", "... до");
+                $("#id_latency_0").addClass("form-control");
+                $("#id_latency_1").addClass("form-control");
+                $("#id_latency__contains").prev().text("Задержка между");
+                $("#id_latency_0").attr("placeholder", "Начиная с ...");
+                $("#id_latency_1").attr("placeholder", "... до");
+            {% else %}
+                $("#id_score_0").addClass("form-control");
+                $("#id_score_0").attr("placeholder", "Начиная с ...");
+                $("#id_score_0").prev().text("Счёт между");
+                $("#id_score_1").addClass("form-control");
+                $("#id_score_1").attr("placeholder", "... до");
+                $("#id_rank").addClass("form-control");
+                $("#id_rank").prev().text("Позиция");
+            {% endif %}
+
+            $("#id_price_0").addClass("form-control");
+            $("#id_price_0").attr("placeholder", "Начиная с ...");
+            $("#id_price_0").prev().text("Цена между");
+            $("#id_price_1").addClass("form-control");
+            $("#id_price_1").attr("placeholder", "... до");
             $("#id_in_stock").addClass("form-control");
             $("#id_in_stock").prev().text("Наличие");
-
-            $("#id_speed_read__contains").addClass("form-control");
-            $("#id_speed_read__contains").prev().text("Скорость чтения содержит");
-            $("#id_speed_write__contains").addClass("form-control");
-            $("#id_speed_write__contains").prev().text("Скорость записи содержит");
-            $("#id_latency__contains").addClass("form-control");
-            $("#id_latency__contains").prev().text("Задержка содержит");
 
             $(".col-md-3").css("display", "initial");
         });

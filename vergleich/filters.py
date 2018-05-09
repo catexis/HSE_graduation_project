@@ -2,54 +2,43 @@ from . import models
 import django_filters
 
 
-class TableCPUFilter(django_filters.FilterSet):
+class DRYFilter(django_filters.FilterSet):
+    name = django_filters.CharFilter(lookup_expr='icontains')
+    score = django_filters.RangeFilter()
+    rank = django_filters.NumberFilter()
+    in_stock = django_filters.BooleanFilter()
+    price = django_filters.RangeFilter()
+
+
+class TableCPUFilter(DRYFilter):
 
     class Meta:
         model = models.ScrapperBenchCPU
-        fields = {
-            'name': ['contains'],
-            'score': ['contains'],
-            'rank': ['exact'],
-            'in_stock': ['exact'],
-            'price': ['contains']
-        }
+        fields = ['name', 'score', 'rank', 'in_stock', 'price']
 
 
-class TableHDDFilter(django_filters.FilterSet):
+class TableHDDFilter(DRYFilter):
 
     class Meta:
         model = models.ScrapperBenchHDD
-        fields = {
-            'name': ['contains'],
-            'score': ['contains'],
-            'rank': ['exact'],
-            'in_stock': ['exact'],
-            'price': ['contains']
-        }
+        fields = ['name', 'score', 'rank', 'in_stock', 'price']
 
 
-class TableVGAFilter(django_filters.FilterSet):
+class TableVGAFilter(DRYFilter):
 
     class Meta:
         model = models.ScrapperBenchVideo
-        fields = {
-            'name': ['contains'],
-            'score': ['contains'],
-            'rank': ['exact'],
-            'in_stock': ['exact'],
-            'price': ['contains']
-        }
+        fields = ['name', 'score', 'rank', 'in_stock', 'price']
 
 
 class TableRamFilter(django_filters.FilterSet):
+    name = django_filters.CharFilter(lookup_expr='icontains')
+    speed_read = django_filters.RangeFilter()
+    speed_write = django_filters.RangeFilter()
+    latency = django_filters.RangeFilter()
+    in_stock = django_filters.BooleanFilter()
+    price = django_filters.RangeFilter()
 
     class Meta:
         model = models.ScrapperBenchRam
-        fields = {
-            'name': ['contains'],
-            'speed_read': ['contains'],
-            'speed_write': ['contains'],
-            'latency': ['contains'],
-            'in_stock': ['exact'],
-            'price': ['contains']
-        }
+        fields = ['name', 'speed_read', 'speed_write', 'latency', 'in_stock', 'price']

@@ -42,9 +42,9 @@
             <div class="card-footer">
 
                 {% if view.type_of_view == 'FormView' %}
-                    <button type="submit" class="btn btn-outline-primary btn-lg btn-block"><i class="fa fa-dot-circle-o"></i> Добавить</button>
+                    <input type="submit" class="btn btn-outline-primary btn-lg btn-block"></input>
                 {% elif view.type_of_view == 'UpdateView' %}
-                    <button type="submit" class="btn btn-outline-success btn-lg btn-block"><i class="fa fa-save"></i> Сохранить</button>
+                    <input type="submit" class="btn btn-outline-success btn-lg btn-block"></input>
                 {% endif %}
 
             </div>
@@ -64,7 +64,6 @@
             $("#id_vga").addClass("form-control-sm form-control")
             $("table").addClass("table")
             $(".col-md-9").css("display", "initial")
-            // $("tr > th").addClass("col-lg-6");
         });
     </script>
 

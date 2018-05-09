@@ -80,10 +80,11 @@ class TableRAM(LoginRequiredMixin, SingleTableMixin, FilterView):
     model = models.ScrapperBenchRam
     queryset = models.ScrapperBenchRam.objects.all().order_by('-in_stock', '-speed_read')
     table_class = RAMTable
-    paginate_by = 10
+    paginate_by = 15
     filterset_class = filters.TableRamFilter
     login_url = '/accounts/login/'
     redirect_field_name = 'redirect_to'
+    ram_table = "True"
 
     def get_context_data(self, **kwargs):
         context = super(TableRAM, self).get_context_data(**kwargs)
