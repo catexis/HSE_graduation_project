@@ -27,7 +27,7 @@ class ColumnLink(tables.Column):
 
 class CPUTable(tables.Table):
     name = ColumnLink(verbose_name="Имя")
-    score = tables.Column(verbose_name="Очки")
+    score = tables.Column(verbose_name="Индекс производительности")
     rank = tables.Column(verbose_name="Позиция")
     in_stock = ColumnBool(verbose_name="В наличии")
     price = ColumnNoPrice(verbose_name="Цена")
@@ -40,7 +40,7 @@ class CPUTable(tables.Table):
 
 class HDDTable(tables.Table):
     name = ColumnLink(verbose_name="Имя")
-    score = tables.Column(verbose_name="Очки")
+    score = tables.Column(verbose_name="Индекс производительности")
     rank = tables.Column(verbose_name="Позиция")
     in_stock = ColumnBool(verbose_name="В наличии")
     price = ColumnNoPrice(verbose_name="Цена")
@@ -53,7 +53,7 @@ class HDDTable(tables.Table):
 
 class VGATable(tables.Table):
     name = ColumnLink(verbose_name="Имя")
-    score = tables.Column(verbose_name="Очки")
+    score = tables.Column(verbose_name="Индекс производительности")
     rank = tables.Column(verbose_name="Позиция")
     in_stock = ColumnBool(verbose_name="В наличии")
     price = ColumnNoPrice(verbose_name="Цена")
