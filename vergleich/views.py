@@ -111,7 +111,6 @@ class ConfCreateView(LoginRequiredMixin, FormView):
             vga = form.cleaned_data['vga']
         )
         new_obj.save()
-        print(form)
         return super().form_valid(form)
 
 
