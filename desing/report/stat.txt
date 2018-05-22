@@ -1,0 +1,52 @@
+models
+	5 cl
+	83 str
+	
+tables
+	7 cl
+	78 str
+	
+filters
+	5 cl
+	44 str
+	
+forms
+	1 cl
+	9 str
+	
+vergleich \ urls
+	24 str
+	
+view
+	9 cl
+	151 str
+	
+vergleich \ templates
+	base - 188 str
+	compare_view - 94 str
+	computerconf_confirm_delete - 37 str
+	create_view - 70 str
+	index - 45 str
+	table_view - 94 str
+	
+templates
+	login - 79 str
+	
+urls
+	18 str
+	
+tests
+	forms
+		1 cl
+		65 str
+	views
+		7 cl
+		206 str
+	models
+		5 cl
+		176 str
+	
+Total:
+	cl: 40
+	str: 1461
+	
